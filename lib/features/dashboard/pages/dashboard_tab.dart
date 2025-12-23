@@ -44,7 +44,7 @@ class DashboardTab extends StatelessWidget {
                 SizedBox(width: 12),
                 StatCard(
                   title: 'Low Stock',
-                  value: '8',
+                  value: '2',
                   icon: Icons.warning,
                   color: Colors.orange,
                 ),
@@ -71,16 +71,20 @@ class DashboardTab extends StatelessWidget {
             const SizedBox(height: 24),
 
             /// USER ACTION
-            ActionButton(
-              icon: Icons.add_shopping_cart,
-              label: 'Register Sale',
-              color: Colors.green,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const AddSalePage()),
-                );
-              },
+            SizedBox(
+              height: 100,
+              width: double.infinity,
+              child: ActionButton(
+                icon: Icons.add_shopping_cart,
+                label: 'Register Sale',
+                color: Colors.green,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const AddSalePage()),
+                  );
+                },
+              ),
             ),
           ],
         ),
