@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart';
-import 'signup_page.dart';
+// import 'signup_page.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -113,37 +113,36 @@ class LandingPage extends StatelessWidget {
                 const SizedBox(height: 14),
 
                 /// SIGNUP BUTTON
-                OutlinedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => SignupPage()),
-                    );
-                  },
-                  style: OutlinedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 54),
-                    side: const BorderSide(color: Color.fromARGB(179, 0, 0, 0)),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                  ),
-                  child: const Text(
-                    'Create Account',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 128, 66, 66),
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 50),
+                // OutlinedButton(
+                //   onPressed: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(builder: (_) => SignupPage()),
+                //     );
+                //   },
+                //   style: OutlinedButton.styleFrom(
+                //     minimumSize: const Size(double.infinity, 54),
+                //     side: const BorderSide(color: Color.fromARGB(179, 0, 0, 0)),
+                //     shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(14),
+                //     ),
+                //   ),
+                //   child: const Text(
+                //     'Create Account',
+                //     style: TextStyle(
+                //       color: Color.fromARGB(255, 128, 66, 66),
+                //       fontSize: 16,
+                //     ),
+                //   ),
+                // ),
+                const SizedBox(height: 100),
 
                 /// FOOTER
                 Text(
                   '© 2025 StockSync IMS. All rights reserved.',
                   style: TextStyle(
                     color: const Color.fromARGB(255, 0, 0, 0),
-                    fontSize: 13,
+                    fontSize: 14,
                   ),
                 ),
 

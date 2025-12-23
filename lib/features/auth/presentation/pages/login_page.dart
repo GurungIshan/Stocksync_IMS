@@ -193,23 +193,23 @@ class _LoginPageState extends State<LoginPage> {
                         Center(
                           child: Column(
                             children: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => SignupPage(),
-                                    ),
-                                  );
-                                },
-                                child: Text(
-                                  'Don\'t have an account? Sign up',
-                                  style: TextStyle(
-                                    color: Colors.blue.shade900,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
+                              // TextButton(
+                              //   onPressed: () {
+                              //     Navigator.pushReplacement(
+                              //       context,
+                              //       MaterialPageRoute(
+                              //         builder: (_) => SignupPage(),
+                              //       ),
+                              //     );
+                              //   },
+                              //   child: Text(
+                              //     'Don\'t have an account? Sign up',
+                              //     style: TextStyle(
+                              //       color: Colors.blue.shade900,
+                              //       fontWeight: FontWeight.w500,
+                              //     ),
+                              //   ),
+                              // ),
 
                               /// Landing Page Redirect
                               TextButton(
