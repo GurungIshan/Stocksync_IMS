@@ -46,7 +46,6 @@ import '../../../../core/network/dio_client.dart';
 class AuthRemoteDataSource {
   final Dio dio = DioClient.dio;
 
-  /// 🔴 Toggle this
   static const bool useMockLogin = true;
 
   Future<UserModel> login(String email, String password) async {
@@ -67,23 +66,23 @@ class AuthRemoteDataSource {
     }
   }
 
-  Future<UserModel> signup(String name, String email, String password) async {
-    if (useMockLogin) {
-      return _mockSignup(name, email);
-    }
+  // Future<UserModel> signup(String name, String email, String password) async {
+  //   if (useMockLogin) {
+  //     return _mockSignup(name, email);
+  //   }
 
-    try {
-      final response = await dio.post(
-        '/api/Auth/register',
-        data: {'name': name, 'email': email, 'password': password},
-      );
+  //   try {
+  //     final response = await dio.post(
+  //       '/api/Auth/register',
+  //       data: {'name': name, 'email': email, 'password': password},
+  //     );
 
-      return UserModel.fromJson(response.data);
-    } on DioException catch (e) {
-      final message = e.response?.data?['message'] ?? 'Signup failed';
-      throw Exception(message);
-    }
-  }
+  //     return UserModel.fromJson(response.data);
+  //   } on DioException catch (e) {
+  //     final message = e.response?.data?['message'] ?? 'Signup failed';
+  //     throw Exception(message);
+  //   }
+  // }
 
   // ================= MOCK DATA =================
 
@@ -97,15 +96,15 @@ class AuthRemoteDataSource {
     );
   }
 
-  Future<UserModel> _mockSignup(String name, String email) async {
-    await Future.delayed(const Duration(seconds: 1));
+  // Future<UserModel> _mockSignup(String name, String email) async {
+  //   await Future.delayed(const Duration(seconds: 1));
 
-    return UserModel(
-      name: name,
-      email: email,
-      token: 'mock_token_123',
-    );
-  }
+  //   return UserModel(
+  //     name: name,
+  //     email: email,
+  //     token: 'mock_token_123',
+  //   );
+  // }
 }
 
 // ///api/Auth/login

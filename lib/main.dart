@@ -51,12 +51,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginUseCase = LoginUseCase(authRepository);
-    final signupUseCase = SignupUseCase(authRepository);
+    // final signupUseCase = SignupUseCase(authRepository);
 
     return BlocProvider<AuthBloc>(
       create: (_) => AuthBloc(
         loginUseCase: loginUseCase,
-        signupUseCase: signupUseCase,
+        // signupUseCase: signupUseCase,
         sessionManager: sessionManager,
       ),
       child: MaterialApp(

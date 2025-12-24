@@ -2,17 +2,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
 import '../../domain/usecases/login_usecase.dart';
-import '../../domain/usecases/signup_usecase.dart';
+// import '../../domain/usecases/signup_usecase.dart';
 import '../../../../core/session/session_manager.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final LoginUseCase loginUseCase;
-  final SignupUseCase signupUseCase;
+  // final SignupUseCase signupUseCase;
   final SessionManager sessionManager;
 
   AuthBloc({
     required this.loginUseCase,
-    required this.signupUseCase,
+    // required this.signupUseCase,
     required this.sessionManager,
   }) : super(AuthInitial()) {
 
@@ -39,20 +39,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     // 📝 SIGNUP
-    on<SignupEvent>((event, emit) async {
-      emit(AuthLoading());
-      try {
-        final user = await signupUseCase.execute(
-          event.name,
-          event.email,
-          event.password,
-        );
+    // on<SignupEvent>((event, emit) async {
+    //   emit(AuthLoading());
+    //   try {
+    //     final user = await signupUseCase.execute(
+    //       event.name,
+    //       event.email,
+    //       event.password,
+    //     );
 
-        emit(AuthSuccess(user));
-      } catch (e) {
-        emit(AuthFailure(e.toString()));
-      }
-    });
+    //     emit(AuthSuccess(user));
+    //   } catch (e) {
+    //     emit(AuthFailure(e.toString()));
+    //   }
+    // });
 
     // 🚪 LOGOUT
     on<LogoutEvent>((event, emit) async {

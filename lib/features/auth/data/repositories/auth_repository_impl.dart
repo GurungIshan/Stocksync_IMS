@@ -16,8 +16,8 @@ class AuthRepositoryImpl implements AuthRepository {
     }
   }
 
-  @override
-  Future<User> signup(String name, String email, String password) {
-    return remote.signup(name, email, password);
-  }
+  // @override
+  // Future<User> signup(String name, String email, String password) {
+  //   return remote.signup(name, email, password);
+  // }
 }
