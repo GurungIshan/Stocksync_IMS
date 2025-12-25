@@ -37,8 +37,6 @@
 //   }
 // }
 
-
-
 import 'package:dio/dio.dart';
 import '../models/user_model.dart';
 import '../../../../core/network/dio_client.dart';
@@ -66,24 +64,6 @@ class AuthRemoteDataSource {
     }
   }
 
-  // Future<UserModel> signup(String name, String email, String password) async {
-  //   if (useMockLogin) {
-  //     return _mockSignup(name, email);
-  //   }
-
-  //   try {
-  //     final response = await dio.post(
-  //       '/api/Auth/register',
-  //       data: {'name': name, 'email': email, 'password': password},
-  //     );
-
-  //     return UserModel.fromJson(response.data);
-  //   } on DioException catch (e) {
-  //     final message = e.response?.data?['message'] ?? 'Signup failed';
-  //     throw Exception(message);
-  //   }
-  // }
-
   // ================= MOCK DATA =================
 
   Future<UserModel> _mockLogin(String email) async {
@@ -95,16 +75,6 @@ class AuthRemoteDataSource {
       token: 'mock_token_123',
     );
   }
-
-  // Future<UserModel> _mockSignup(String name, String email) async {
-  //   await Future.delayed(const Duration(seconds: 1));
-
-  //   return UserModel(
-  //     name: name,
-  //     email: email,
-  //     token: 'mock_token_123',
-  //   );
-  // }
 }
 
 // ///api/Auth/login

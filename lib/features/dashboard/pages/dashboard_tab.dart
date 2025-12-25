@@ -17,15 +17,66 @@ class DashboardTab extends StatelessWidget {
         title: const Text('Dashboard'),
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (_) => const LandingPage()),
-                (route) => false,
-              );
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.more_vert),
+            onSelected: (value) {
+              switch (value) {
+                case 'profile':
+                  // Navigator.push(
+                  //   // context,
+                  //   // MaterialPageRoute(builder: (_) => const ProfilePage()),
+                  // );
+                  break;
+
+                case 'settings':
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (_) => const SettingsPage()),
+                  // );
+                  break;
+
+                case 'logout':
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (_) => const LandingPage()),
+                    (route) => false,
+                  );
+                  break;
+              }
             },
+            itemBuilder: (context) => const [
+              PopupMenuItem(
+                value: 'profile',
+                child: Row(
+                  children: [
+                    Icon(Icons.person, size: 20),
+                    SizedBox(width: 10),
+                    Text('Profile'),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: 'settings',
+                child: Row(
+                  children: [
+                    Icon(Icons.settings, size: 20),
+                    SizedBox(width: 10),
+                    Text('Settings'),
+                  ],
+                ),
+              ),
+              PopupMenuDivider(),
+              PopupMenuItem(
+                value: 'logout',
+                child: Row(
+                  children: [
+                    Icon(Icons.logout, size: 20, color: Colors.red),
+                    SizedBox(width: 10),
+                    Text('Logout', style: TextStyle(color: Colors.red)),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       ),
