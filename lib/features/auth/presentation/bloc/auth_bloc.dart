@@ -16,7 +16,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required this.sessionManager,
   }) : super(AuthInitial()) {
 
-    // 🔐 LOGIN
     on<LoginEvent>((event, emit) async {
       emit(AuthLoading());
       try {
@@ -37,22 +36,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthFailure(e.toString()));
       }
     });
-
-    // 📝 SIGNUP
-    // on<SignupEvent>((event, emit) async {
-    //   emit(AuthLoading());
-    //   try {
-    //     final user = await signupUseCase.execute(
-    //       event.name,
-    //       event.email,
-    //       event.password,
-    //     );
-
-    //     emit(AuthSuccess(user));
-    //   } catch (e) {
-    //     emit(AuthFailure(e.toString()));
-    //   }
-    // });
 
     // 🚪 LOGOUT
     on<LogoutEvent>((event, emit) async {

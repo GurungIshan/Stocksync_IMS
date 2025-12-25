@@ -1,4 +1,6 @@
 // main.dart
+// import 'package:dio/dio.dart';
+import 'core/network/dio_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/session/session_manager.dart';
@@ -16,23 +18,37 @@ void main() async {
 
   try {
     print('Starting app initialization...');
+
     final sessionManager = SessionManager();
 
-    final AuthRepository authRepository = AuthRepositoryImpl(
-      AuthRemoteDataSource(),
-    );
+    // 1️⃣ Create Dio instance
+    final dio = DioClient.dio;
+
+    // 2️⃣ Create Remote Data Source (IMPLEMENTATION)
+    final authRemoteDataSource = AuthRemoteDataSourceImpl(dio);
+
+    // 3️⃣ Create Repository
+    final AuthRepository authRepository =
+        AuthRepositoryImpl(authRemoteDataSource);
 
     print('Running app...');
     runApp(
-      MyApp(sessionManager: sessionManager, authRepository: authRepository),
+      MyApp(
+        sessionManager: sessionManager,
+        authRepository: authRepository,
+      ),
     );
   } catch (e, stackTrace) {
     print('Error during initialization: $e');
     print('Stack trace: $stackTrace');
-    // You could show an error screen here
+
     runApp(
       MaterialApp(
-        home: Scaffold(body: Center(child: Text('Initialization Error: $e'))),
+        home: Scaffold(
+          body: Center(
+            child: Text('Initialization Error: $e'),
+          ),
+        ),
       ),
     );
   }
