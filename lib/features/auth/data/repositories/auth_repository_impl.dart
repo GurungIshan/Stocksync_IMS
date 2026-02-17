@@ -1,3 +1,5 @@
+import 'package:stocksync/features/auth/domain/models/auth_payload.dart';
+
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../../../../core/error/exceptions.dart';
@@ -12,7 +14,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<User> login(String email, String password) async {
     try {
-      return await remote.login(email, password);
+      return await remote.login(AuthPayload(username: email, password: password));
     } on ServerException catch (e) {
       throw ServerFailure(e.message);
     } on NetworkException catch (e) {

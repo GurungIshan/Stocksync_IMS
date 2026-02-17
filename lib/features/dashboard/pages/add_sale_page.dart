@@ -34,15 +34,12 @@ class _AddSalePageState extends State<AddSalePage> {
               decoration: const InputDecoration(labelText: 'Product'),
             ),
             const SizedBox(height: 16),
-
             TextFormField(
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(labelText: 'Quantity'),
               onChanged: (val) => quantity = int.parse(val),
             ),
-
             const SizedBox(height: 30),
-
             ElevatedButton(
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(

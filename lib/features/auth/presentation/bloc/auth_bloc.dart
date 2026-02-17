@@ -1,46 +1,58 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stocksync/features/auth/domain/entities/user.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
 import '../../domain/usecases/login_usecase.dart';
-// import '../../domain/usecases/signup_usecase.dart';
 import '../../../../core/session/session_manager.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final LoginUseCase loginUseCase;
-  // final SignupUseCase signupUseCase;
   final SessionManager sessionManager;
 
   AuthBloc({
     required this.loginUseCase,
-    // required this.signupUseCase,
     required this.sessionManager,
   }) : super(AuthInitial()) {
+    on<LoginRequested>(_onLoginRequested);
+    on<LogoutRequested>(_onLogoutRequested);
+  }
 
-    on<LoginEvent>((event, emit) async {
-      emit(AuthLoading());
-      try {
-        final user = await loginUseCase.execute(
-          event.email,
-          event.password,
-        );
+  Future<void> _onLoginRequested(
+    LoginRequested event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit( AuthLoading());
 
-        await sessionManager.saveSession(
-          user.email,
-          user.name,
-          user.token,
-        );
+    try {
+      final result = await loginUseCase(
+        email: event.email,
+        password: event.password,
+      );
 
-        emit(AuthSuccess(user));
-      } catch (e) {
-        
-        emit(AuthFailure(e.toString()));
-      }
-    });
+      // Token handled outside domain
+      await sessionManager.saveSession(
+        result.email,
+        result.name,
+        "",
+      );
+      final user = User(
+        email: result.email,
+        name: result.name,
+      );
 
-    // 🚪 LOGOUT
-    on<LogoutEvent>((event, emit) async {
-      await sessionManager.clearSession();
-      emit(AuthInitial());
-    });
+      emit(AuthAuthenticated(user));
+    } catch (e) {
+      emit(
+        const AuthError('Invalid email or password'),
+      );
+    }
+  }
+
+  Future<void> _onLogoutRequested(
+    LogoutRequested event,
+    Emitter<AuthState> emit,
+  ) async {
+    await sessionManager.clearSession();
+    emit(AuthInitial());
   }
 }

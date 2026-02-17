@@ -5,7 +5,7 @@ class UserModel extends User {
     required String name,
     required String email,
     required String token,
-  }) : super(name: name, email: email, token: token);
+  }) : super(name: name, email: email);
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     final data = json['data'];
@@ -18,6 +18,6 @@ class UserModel extends User {
   }
 
   Map<String, dynamic> toJson() {
-    return {'name': name, 'email': email, 'token': token};
+    return {'name': name, 'email': email};
   }
 }
